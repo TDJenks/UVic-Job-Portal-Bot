@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import sync_playwright, Page
 
 # This is your recorded logic (I moved it into a standard function)
-def run_portal_actions(page: Page):
+def navigate_to_postings(page: Page):
     print("Navigating menu...")
     page.get_by_role("button", name="Toggle Main Menu").click()
     
@@ -18,13 +18,36 @@ def run_portal_actions(page: Page):
     page.get_by_role("link", name="-Fall - all jobs open to me").click()
     
     # Handling the popup for a specific job
-    print("Opening job details...")
-    with page.expect_popup() as page1_info:
-        page.get_by_role("button", name="Hydro-climatic data analysis").click()
-    
-    page1 = page1_info.value
-    page1.wait_for_load_state() # Ensure the popup is fully loaded
-    print(f"Now viewing: {page1.title()}")
+
+def open_jobs(page: Page):
+    # 1. Target the table specifically
+    table = page.locator("#postingsTable")
+
+    # 2. Find buttons ONLY inside that table
+    job_buttons = table.get_by_role("button").all()
+
+    i = 0
+    for job in job_buttons:
+        if job.inner_text().lower() == 'apply':
+            continue
+        # temporary for testing
+        if i == 7:
+            break
+        
+        i += 1
+        print(f"Opening job {i}...")
+        # Now you're only clicking buttons inside the grid
+        with page.expect_popup() as job_info:
+            job.click()
+        new_tab = job_info.value
+        new_tab.wait_for_load_state()
+
+        # proof of function, for testing
+        # new_tab.screenshot(path=f"job_screenshots/job{i}.png")
+        # print(f"job {i} screenshot saved successfully!")
+        
+        new_tab.close()
+
 
 def main():
     with sync_playwright() as p:
@@ -36,7 +59,10 @@ def main():
         page = context.pages[0] 
         
         # 3. Run your logic
-        run_portal_actions(page)
+        navigate_to_postings(page)
+        open_jobs(page)
 
 if __name__ == "__main__":
     main()
+
+
