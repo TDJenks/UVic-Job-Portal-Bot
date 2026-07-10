@@ -1,5 +1,7 @@
 from playwright.sync_api import sync_playwright
 
+# Open a debug version of google chrome and connect to it via localhost port 9222
+
 with sync_playwright() as p:
     # Instead of launching, connect to the existing instance
     browser = p.chromium.connect_over_cdp("http://localhost:9222")
