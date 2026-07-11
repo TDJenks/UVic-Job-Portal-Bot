@@ -1,5 +1,8 @@
 import re
+import json
 from playwright.sync_api import sync_playwright, Page
+
+job_dict_for_json = {}
 
 # Automatically navigates to the job postings (currently goes to fall, needs to change to work for any season)
 def navigate_to_postings(page: Page):
@@ -17,8 +20,9 @@ def navigate_to_postings(page: Page):
 
 
 def save_job_info(page: Page):
-    organization_info = page.locator(".panel-body").first.get_by_role("cell").all()
-    print(organization_info[1].inner_text())
+    organization = page.locator(".panel-body").first.get_by_role("cell").all()
+    organization_name = organization[1].inner_text()
+    print(organization_name)
 
     # This is the form of a list where the first index is something like "Job Name"
     # and the second index describe that previous index like "Awesome software co-op"
@@ -28,18 +32,10 @@ def save_job_info(page: Page):
     
     job_info_dict = dict(zip(job_attribute_names, job_attribute_details))
 
-    i = 0
-    for name, detail in job_info_dict.items():
-        i += 1
-        print(f"#{i} {name} | #{i} {detail}")
-
-
+    if organization_name not in job_dict_for_json.keys():
+        job_dict_for_json[organization_name] = []
     
-    # job_info_dict = dict(zip(job_posting[::2], job_posting[1::2]))
-
-    # for k, v in job_info_dict:
-    #     print(f"key: {k} -- value: {v}")
-
+    job_dict_for_json[organization_name].append({job_info_dict['Job Title:'] : job_info_dict})
 
 
 def scrape_jobs(page: Page):
@@ -54,10 +50,10 @@ def scrape_jobs(page: Page):
             continue
 
         # temporary for testing
-        if i == 1:
-            break
-
+        # if i == 5:
+        #     break
         i += 1
+
         print(f"Opening job {i}...")
 
         with page.expect_popup() as new_tab:
@@ -65,14 +61,6 @@ def scrape_jobs(page: Page):
         job_posting = new_tab.value
         job_posting.wait_for_load_state()
 
-        # Takes screenshot for debug purposes
-        job_posting.screenshot(path=f"job_screenshots/job{i}.png")
-        print(f"job {i} screenshot saved successfully!")
-
-        # TODO
-        # Create a function that can:
-        # - Turn job posting into a readable table
-        # - For each row, store the text as a json
         save_job_info(job_posting)
         
         job_posting.close()
@@ -83,11 +71,14 @@ def main():
         browser = p.chromium.connect_over_cdp("http://localhost:9222")
         context = browser.contexts[0]
         page = context.pages[0] 
-        
+
         # uncomment this if you want it to start from the main page
         #navigate_to_postings(page)
 
         scrape_jobs(page)
+
+        with open('jobs.json', 'w') as file:
+            json.dump(job_dict_for_json, file, indent=4)
 
 
 if __name__ == "__main__":
