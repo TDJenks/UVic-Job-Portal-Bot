@@ -1,0 +1,51 @@
+SUMMARY
+Third-year Software Engineering student with a strong technical foundation in machine learning, system concurrency, data analytics, and object oriented programming. Experienced in leading cross-functional engineering teams, architecting automated data pipelines, and bridging the gap between high-level client requirements and rigorous technical specifications.
+
+CORE COMPETENCIES & TECHNICAL SKILLS
+- Programming & Scripting: Python, Java, C, SQL, DAX, HTML
+- Machine Learning & Data Science: PyTorch, Pandas, NumPy, scikit-learn, Matplotlib, Convolutional Neural Networks (CNN)
+- Tools, Platforms & OS: Git/GitHub, Linux/Ubuntu, VS Code, PostgreSQL, Virtual Environments, Power BI, Playwright, Figma, Adobe Photoshop
+- Specialized Domains: Process Automation, Multi-threading & Synchronization, Requirements Engineering, Automated Web Scraping, Embedded Systems, Technical Documentation
+
+PROFESSIONAL EXPERIENCE
+
+IM/IT Generalist Co-op | Legal Services Branch, Ministry of Attorney General | 2026
+- Process Automation & Scripting: Engineered an automated validation framework by developing custom Python scripts to crawl the BC Laws API, download raw XML data, and perform complex file matching. Replaced a manual process, ensuring 100% content consistency for public-facing legal documents.
+- Data Validation & Leadership: Collaborated majorly on a high-priority validation project alongside the Senior Business Analyst (project lead). This automated "diffing" workflow is projected to save the organization over $250,000 and one year of manual labor.
+- Data Analytics: Optimized a Power BI dashboard using advanced DAX queries to enhance data granularity, allowing departmental leadership to track timekeeping and employee performance with precision.
+- Quality Assurance: Conducted a technical investigation into Adobe redaction failures, diagnosing structural vulnerabilities in auto-generated "fragile" PDF reports and formulating remediation strategies adopted by client teams.
+- Business Analysis: Facilitated requirement elicitation sessions with internal clients to identify KPIs and authored comprehensive technical documentation to ensure seamless knowledge transfer.
+
+Software Team Lead | UVIC Mining Technologies | 2024 - Present
+- Team Leadership: Collaborate weekly with cross-functional engineers to refine design specifications for complex software and hardware systems.
+- Workflow Optimization: Develop and deliver standardized Git workflow training to the engineering group, significantly improving code integration efficiency and version control practices.
+- Project Coordination: Coordinate logistical and technical project details, including conducting site evaluations at the New Afton Mine in Kamloops alongside other team leads.
+
+TECHNICAL PROJECTS
+
+Machine Learning Image Classification Pipeline (PyTorch) | 2025
+- Architected and implemented a Convolutional Neural Network (CNN) from scratch in PyTorch to classify images from the CIFAR-10 dataset.
+- Achieved 83.7% test accuracy, improving the baseline model by 11.4% through systematic hyperparameter optimization.
+- Engineered a robust training pipeline featuring automated model checkpointing and resume functionality for iterative experiments, integrated with Matplotlib for performance visualization.
+
+Concurrent Train Track Simulation (C) | 2026
+- Designed a complex multi-threaded simulation in C to model resource sharing and real-time scheduling.
+- Implemented strict thread synchronization using pthreads, mutexes, and condition variables to successfully prevent race conditions and deadlocks across simulated entities.
+
+Mobile-First Healthcare Platform Architecture (Team Lead)
+- Led a collaborative design team to architect a healthcare platform bridging clinical decision-making with patient experience.
+- Acted as the primary technical liaison between the student team and an industry-mentored client group, facilitating all professional consultations.
+- Authored a comprehensive 57-page requirements document detailing exhaustive functional/non-functional requirements and system flow diagrams.
+
+Health Record Management System Prototype | 2024
+- Co-developed a robust prototype application managing patient and doctor interactions, utilizing Git for collaborative version control.
+- Engineered comprehensive integration tests using the Python unittest framework to validate persistence, secure login workflows, and core CRUD operations.
+
+Embedded Systems & Automation Projects
+- Hardware/Software Integration: Developed an interactive web application utilizing HTML that processes and responds to physical temperature sensor inputs via a Raspberry Pi Pico.
+- Automated Data Collection: Programmed a web-scraping bot using Python and Playwright to autonomously crawl and extract structured data from job portals.
+- Signal Processing: Built a closed-loop embedded system acting as a PWM signal generator and monitor using an STM32F051 microcontroller.
+
+EDUCATION
+Bachelor of Software Engineering | University of Victoria | Expected May 2028
+- Relevant Coursework: Software Development Methods, Data Structures and Algorithms II, Data Mining, Requirements Engineering, Database Systems

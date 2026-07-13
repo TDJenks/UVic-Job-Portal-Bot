@@ -32,10 +32,8 @@ def save_job_info(page: Page):
     
     job_info_dict = dict(zip(job_attribute_names, job_attribute_details))
 
-    if organization_name not in job_dict_for_json.keys():
-        job_dict_for_json[organization_name] = []
-    
-    job_dict_for_json[organization_name].append({job_info_dict['Job Title:'] : job_info_dict})
+    # Saves job as 'organization_name%%job_title : job_info
+    job_dict_for_json[f'{organization_name}%%{job_info_dict['Job Title:']}'] = job_info_dict
 
 
 def scrape_jobs(page: Page):
@@ -72,7 +70,7 @@ def main():
         context = browser.contexts[0]
         page = context.pages[0] 
 
-        # uncomment this if you want it to start from the main page
+        # uncomment this if you want it to start from the main page (outdated)
         #navigate_to_postings(page)
 
         scrape_jobs(page)
