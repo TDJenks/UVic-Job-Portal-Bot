@@ -1,5 +1,4 @@
-*This is a project I'm creating to remedy the problem of having an overwhelming amount of job postings on the co-op portal at one time*
-instead of deciding which job postings to focus on, let a bot decide which ones best suit your skillset!
+*Ranks jobs on the uvic co-op portal based on skills and experience to optimize job applications*
 
 ### How to use
 This requires **two** terminals to be running **simultaneously**, as one is used to keep the chrome window open and the other is used to run the playwright script.
