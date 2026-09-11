@@ -60,7 +60,9 @@ def main():
         score_dict[job] = score
 
     rankings = dict(sorted(score_dict.items(), key=lambda item: item[1], reverse=True))
-    print(rankings)
+    with open("ranks.txt", "w", encoding="utf-8") as f:
+        for key, value in rankings.items():
+            f.write(f"{key}: {value}\n")
 
 
     

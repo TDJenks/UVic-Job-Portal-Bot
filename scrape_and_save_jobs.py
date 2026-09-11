@@ -33,7 +33,9 @@ def save_job_info(page: Page):
     job_info_dict = dict(zip(job_attribute_names, job_attribute_details))
 
     # Saves job as 'organization_name%%job_title : job_info
-    job_dict_for_json[f'{organization_name}%%{job_info_dict['Job Title:']}'] = job_info_dict
+    # Will pass if job description doesn't match formatting - very few jobs have this problem
+    if 'Job Title:' in job_info_dict.keys():
+        job_dict_for_json[f'{organization_name}%%{job_info_dict['Job Title:']}'] = job_info_dict
 
 
 def scrape_jobs(page: Page):
@@ -41,17 +43,10 @@ def scrape_jobs(page: Page):
 
     job_buttons = table.get_by_role("button").all()
 
-    # Go through the rows and 
     i = 0
     for job_button in job_buttons:
         if job_button.inner_text().lower() != 'apply':
             continue
-
-        # temporary for testing
-        # if i == 5:
-        #     break
-        i += 1
-
         print(f"Opening job {i}...")
 
         with page.expect_popup() as new_tab:
